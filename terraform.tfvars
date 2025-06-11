@@ -1,2 +1,2 @@
-project     = "my_project"
+project     = "my-project"
 environment = "dev"
