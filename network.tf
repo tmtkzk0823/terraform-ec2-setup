@@ -109,3 +109,19 @@ resource "aws_route_table_association" "private_rt_1c" {
   route_table_id = aws_route_table.private_rt.id
   subnet_id      = aws_subnet.private_subnet_1c.id
 }
+
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Name    = "${var.project}-${var.environment}-igw"
+    project = var.project
+    Env     = var.environment
+  }
+}
+
+resource "aws_route" "public_igw_rt_r" {
+  route_table_id         = aws_route_table.public_rt.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.igw.id
+}
