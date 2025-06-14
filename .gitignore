@@ -40,3 +40,9 @@ terraform.rc
 .idea
 .aws-config
 .env
+
+# keys
+*.pem
+*.key
+*.pub
+id_rsa
